@@ -1,0 +1,73 @@
+\documentclass[11pt, oneside]{article}   	% use "amsart" instead of "article" for AMSLaTeX format
+\usepackage{geometry}                		% See geometry.pdf to learn the layout options. There are lots.
+\geometry{letterpaper}                   		% ... or a4paper or a5paper or ... 
+%\geometry{landscape}                		% Activate for rotated page geometry
+%\usepackage[parfill]{parskip}    		% Activate to begin paragraphs with an empty line rather than an indent
+\usepackage{graphicx}				% Use pdf, png, jpg, or eps§ with pdflatex; use eps in DVI mode
+								% TeX will automatically convert eps --> pdf in pdflatex		
+\usepackage{amssymb}
+\usepackage{subeqnarray}
+\newcommand{\bse}{\begin{subeqnarray}}
+\newcommand{\ese}{\end{subeqnarray}}
+
+%SetFonts
+
+%SetFonts
+
+\begin{document}
+
+%\section{}
+%\subsection{}
+
+\centerline{{\bf Tutorial 2:  Lorenz-Reservoir Computing} }
+\vspace{1cm}
+
+The well-known toy model for atmospheric variability is the Lorenz 1963 model
+given by the set of ODEs, 
+% 
+\bse
+\frac{dx}{dt} &=& s (y - x) \\
+\frac{dy}{dt} &=& r x - y - x z \\ 
+\frac{dz}{dt} &=&  xy  - b z 
+\ese
+%
+This system is, for  standard values of parameters $s=10, r=28$ and $b=2.667$,  
+a  chaotic system with sensitivity to initial conditions. In this project, we will look 
+at the skill of  Reservoir Computer  (RC) based predictions, using the Python
+Notebook provided. 
+
+%
+\begin{itemize}
+%
+\item[(i)] Generate  data by using a time step $\Delta t = 0.02$ 
+and integrating over the time interval $[-100,25]$. Use the interval 
+$[-100,0]$ as training data and the interval $[0,25]$ as `truth'. 
+%
+\item[(ii)] Use initial  hyperparameter values $d = 300$ (reservoir size), 
+$<k> = 6$ (mean degree), $\rho = 1.2$ (spectral radius), $\sigma = 0.1$ 
+(interval in uniform distribution defining $W_{in}$), 
+and $\beta = 0$ (regularization), see B5\_notes. Train 
+the RC using the training data set and generate a RC prediction  
+${\bf x}_R$ of the `truth'  ${\bf x}$ over the test interval $[0,25]$. 
+Set a tolerance error 
+%
+\[
+\epsilon =  || {\bf x} - {\bf x}_R ||^2
+\]
+%
+and determine the time $t_e$ when $\epsilon > 0.1$. 
+%
+\item[(iii)]  How could one determine the Lyapunov exponents of the 
+Lorenz system, using the RC approach (you do not have to do this, 
+but you may)? 
+% 
+\item[(iv)] Study the effect of the hyperparameter $\rho$ on $t_e$
+and try to explain the behavior.  
+% 
+\item[(v)] To which of the hyperparameters is $t_e$ most sensitive?  How 
+could one optimize the values of these hyperparameters to maximize
+$t_e$?  
+
+\end{itemize}
+
+\end{document}  
